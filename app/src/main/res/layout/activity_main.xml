@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:hint="Select Location"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+
+        />
+
+
+    <Spinner
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+        android:scrollbarSize="20dp"
+    android:id="@+id/splocation"/>
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:hint="Select Room Type"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+
+        />
+
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+
+        android:id="@+id/sproomtype"/>
+
+
+    <TextView
+        android:id="@+id/checkindate"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:hint="CheckIn Date"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/checkoutdate"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:hint="CheckOut Date"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+
+        />
+    <TextView
+
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:hint="No of Members"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/adultno"
+        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:hint="Adult"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:inputType="number"
+
+        />
+
+        <EditText
+            android:id="@+id/childno"
+            android:layout_height="wrap_content"
+            android:layout_width="160dp"
+            android:hint="Children"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:inputType="number"
+
+            />
+
+
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etroomnum"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="Number of Rooms"
+        android:textSize="20dp"
+       android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:inputType="number"
+
+        />
+
+
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Calculate"
+    android:id="@+id/btncalculate"
+    android:textSize="25dp"
+    android:textStyle="bold"
+    android:textAlignment="center"
+    />
+
+<!--output to calculate total-->
+
+    <TextView
+        android:id="@+id/roomcost"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:layout_marginLeft="140dp"
+
+        />
+
+    <TextView
+        android:id="@+id/roomno"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:inputType="number"
+
+        android:layout_marginLeft="140dp"
+
+        />
+
+    <TextView
+        android:id="@+id/totaldays"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="140dp"
+        />
+
+
+    <TextView
+        android:id="@+id/totalcost"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="140dp"
+        />
+
+    <TextView
+        android:id="@+id/tvvat"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="140dp"
+        />
+    <TextView
+        android:id="@+id/tvsc"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+      android:layout_marginLeft="120dp"
+        />
+
+    <TextView
+        android:id="@+id/tvnettotal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="140dp"
+        />
+
+
+
+
+
+
+
+</LinearLayout>
