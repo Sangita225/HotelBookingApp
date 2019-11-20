@@ -6,20 +6,23 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
-public class ProgressBar extends AppCompatActivity {
+import static com.example.hotelbooking.R.*;
 
-    private ProgressBar progressbar;
-    private int progressStatus=0;
+public class ProgressBar extends AppCompatActivity{
+
+    ProgressBar progressbaractivity;
+    int progressStatus=0;
     TextView textview;
-    private Handler handler=new Handler();
+     Handler handler=new Handler();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress_bar);
+        setContentView(layout.activity_progress_bar);
 
-        //progressbar = findViewById(R.id.prbcyclic);
+       // progressbaractivity = findViewById(R.id.prbiwindow);
+
         textview=findViewById(R.id.txtview);
 
         new Thread(new Runnable() {
@@ -30,8 +33,8 @@ public class ProgressBar extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            progressbar.setProgress(progressStatus);
-                           // textview.setText(progressStatus + "/" + progressbar.getMax());
+                            progressbaractivity.setProgress(progressStatus);
+                           // textview.setText(progressStatus + "/" + progressbaractivity.getMax());
                         }
                     });
                     try {
@@ -48,5 +51,10 @@ public class ProgressBar extends AppCompatActivity {
                 }
 
         }).start();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

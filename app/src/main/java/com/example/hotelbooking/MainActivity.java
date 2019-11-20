@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
   Button btncalculate;
   TextView checkindate,checkoutdate,roomcost,totaldays,tvtotalcost,tvvat,tvsc,tvnettotal,noOfroom;
 
-    int diff,a,b;
+    int y1,y2,m1,m2,d1,d2,diff;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 spinLocation=findViewById(R.id.splocation);
 spinRoomTYpe=findViewById(R.id.sproomtype);
@@ -73,37 +77,6 @@ btncalculate=findViewById(R.id.btncalculate);
             );
 spinRoomTYpe.setAdapter(adapter1);
 
-spinRoomTYpe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        if(parent.getItemAtPosition(position).equals("Deluxe")){
-            roomcost.setText(" "+ 2500);
-
-        }
-        else if(parent.getItemAtPosition(position).equals("Suite") ){
-            roomcost.setText(" "+ 2000);
-        }
-
-        else if(parent.getItemAtPosition(position).equals("King size") ){
-            roomcost.setText(" "+ 2000);
-        }
-        else if(parent.getItemAtPosition(position).equals("Double Bed") ){
-            roomcost.setText(" "+ 1500);
-
-        }
-        else{
-            //do nothing
-        }
-
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-});
 
 
 
@@ -128,19 +101,86 @@ spinRoomTYpe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() 
         btncalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int  noofroom;
+
+                if (TextUtils.isEmpty(checkindate.getText())) {
+                    checkindate.setText("Please enter check in Date ");
+                    return;
+                }
+                else if (TextUtils.isEmpty(checkoutdate.getText())) {
+                    checkoutdate.setText("Please enter checked out date ");
+                    return;
+                }
+
+                //calculate number of days
+
+                Calendar cal1 = Calendar.getInstance();
+                Calendar cal2 = Calendar.getInstance();
+                cal1.set(y1, m1, d1);
+                cal2.set(y2, m2, d2);
+                long millis1 = cal1.getTimeInMillis();
+                long millis2 = cal2.getTimeInMillis();
+                long diff = millis2 - millis1;
+                long diffDays = (diff / (86400000));
+               // noOfroom.setText("Number of Rooms : "+ etroomno.getText().toString());
 
 
+                int  numRoom = Integer.parseInt(etroomno.getText().toString());
 
-                noOfroom.setText("Number of Rooms : "+ etroomno.getText().toString());
+                //calculate net total
 
+                double roomprice,totalprice;
+                double vat,servicecharge,nettotal;
+                 String roomtype=spinRoomTYpe.getSelectedItem().toString();
 
+                 if(roomtype=="Deluxe"){
+                     roomprice=2500;
+                     totalprice=roomprice*numRoom*diffDays;
+                     vat=(0.13*totalprice) + totalprice;
 
-              diff=(R.id.checkoutdate)-(R.id.checkindate);
-              totaldays.setText("Number of days:"+diff);
+                     nettotal=servicecharge=(0.10*vat) +vat;
 
-               roomcost.setVisibility(View.VISIBLE);
-                roomcost.setText("Total room cost:"+ (roomcost.getText().toString()));
+                     tvtotalcost.setText("Total cost is:"+totalprice);
+                     tvvat.setText("Price after VAT inclusion:"+vat);
+                     tvsc.setText("Price after Service Cherge inclusion:"+servicecharge);
+                     tvnettotal.setText("Net Total:"+nettotal);
+                 }
+
+                 else if(roomtype=="Suite"){
+                     roomprice=2000;
+                     totalprice=roomprice*numRoom*diffDays;
+                     vat=(0.13*totalprice) + totalprice;
+                     nettotal=servicecharge=(0.10*vat) +vat;
+
+                     tvtotalcost.setText("Total cost is:"+totalprice);
+                     tvvat.setText("Price after VAT inclusion:"+vat);
+                     tvsc.setText("Price after Service Cherge inclusion:"+servicecharge);
+                     tvnettotal.setText("Net Total:"+nettotal);
+                 }
+
+                 else if(roomtype=="King size"){
+                     roomprice=2200;
+                     totalprice=roomprice*numRoom*diffDays;
+                     vat=(0.13*totalprice) + totalprice;
+
+                     nettotal=servicecharge=(0.10*vat) +vat;
+                     tvtotalcost.setText("Total cost is:"+totalprice);
+                     tvvat.setText("Price after VAT inclusion:"+vat);
+                     tvsc.setText("Price after Service Cherge inclusion:"+servicecharge);
+                     tvnettotal.setText("Net Total:"+nettotal);
+                 }
+
+                 else if(roomtype=="Double Bed"){
+                     roomprice=1800;
+                     totalprice=roomprice*numRoom*diffDays;
+                     vat=(0.13*totalprice) + totalprice;
+                     nettotal=servicecharge=(0.10*vat) +vat;
+
+                     tvtotalcost.setText("Total cost is:"+totalprice);
+                     tvvat.setText("Price after VAT inclusion:"+vat);
+                     tvsc.setText("Price after Service Cherge inclusion:"+servicecharge);
+                     tvnettotal.setText("Net Total:"+nettotal);
+                 }
+
 
 
 
@@ -167,6 +207,10 @@ spinRoomTYpe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() 
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = "CheckIn Date : " +year +"/"+month+"/"+dayOfMonth;
+                y1=year;
+                m1=month;
+                d1=dayOfMonth;
+
                 checkindate.setText(date);
             }
         },year,month,day);
@@ -185,6 +229,11 @@ spinRoomTYpe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() 
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = "CheckOut Date : " +year +"/"+month+"/"+dayOfMonth;
+
+                y2=year;
+                m2=month;
+                d2=dayOfMonth;
+
                 checkoutdate.setText(date);
             }
         },year,month,day);
