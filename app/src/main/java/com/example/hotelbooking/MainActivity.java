@@ -111,6 +111,8 @@ spinRoomTYpe.setAdapter(adapter1);
                     return;
                 }
 
+
+
                 //calculate number of days
 
                 Calendar cal1 = Calendar.getInstance();
@@ -121,7 +123,7 @@ spinRoomTYpe.setAdapter(adapter1);
                 long millis2 = cal2.getTimeInMillis();
                 long diff = millis2 - millis1;
                 long diffDays = (diff / (86400000));
-               // noOfroom.setText("Number of Rooms : "+ etroomno.getText().toString());
+
 
 
                 int  numRoom = Integer.parseInt(etroomno.getText().toString());
